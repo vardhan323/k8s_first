@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: worker-deploy
+    labels:
+        app: voting-app
+        type: middleware
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            name: worker-pod
+            app: voting-app
+            type: middleware
+    template:
+        metadata:
+            name: worker-pod
+            labels:
+                name: worker-pod
+                app: voting-app
+                type: middleware
+        spec:
+            containers:
+                - name: worker-cont
+                  image: dockersamples/examplevotingapp_worker 

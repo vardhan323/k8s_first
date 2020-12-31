@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: postgres-service
+    labels:
+        app: voting-app
+        type: services
+spec:
+    type: NodePort
+    ports:
+        - targetPort: 5432
+          port: 5432
+          nodePort: 30080
+    selector:
+        matchLabels:
+            name: postgre-pod
+            app: voting-app
+            type: db
